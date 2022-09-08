@@ -1,0 +1,55 @@
+.location {
+    display: flex;
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 10px;
+
+        position: relative;
+    }
+
+    input {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    input,
+    span {
+        @extend %BODY2;
+        color: $font-color;
+
+        white-space: nowrap;
+    }
+
+    &__list {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        width: 100%;
+
+        padding: 0.5em 0.5em;
+        border-radius: 10px;
+
+        background: $back-color;
+        box-shadow: 0 0 10px #26262670;
+    }
+
+    &__btn {
+        @extend %BODY3;
+        color: $font-color;
+        border-bottom: 2px solid transparent;
+
+        &:hover,
+        &:focus {
+            border-color: $main-color;
+        }
+    }
+
+    &__wrapper:focus-within > &__list {
+        display: flex;
+    }
+}

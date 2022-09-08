@@ -1,0 +1,24 @@
+@import "./default/_default";
+
+@import "./variables/colors";
+@import "./variables/fonts";
+
+@import "./general/general";
+@import "./general/visuallyhidden";
+
+@import "./location/location";
+@import "./converter/converter";
+@import "./rates/rates";
+@import "./search/search";
+
+@media screen and (max-width: 1340px) {
+    @import "./general/general-1340";
+}
+
+@media screen and (max-width: 840px) {
+    @import "./variables/fonts-840";
+
+    @import "./general/general-840";
+
+    @import "./converter/converter-840";
+}

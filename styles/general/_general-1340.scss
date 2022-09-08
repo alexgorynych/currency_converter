@@ -1,0 +1,12 @@
+.app-body {
+    > div {
+        grid-template-rows: auto 1fr;
+    }
+}
+
+.app-main {
+    grid-template-areas: "rates" "converter";
+    grid-template-columns: auto;
+    align-content: start;
+    row-gap: 40px;
+}

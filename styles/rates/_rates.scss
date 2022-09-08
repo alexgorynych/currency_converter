@@ -1,0 +1,55 @@
+.rates {
+    grid-area: rates;
+
+    th {
+        @extend %BODY2;
+        padding-bottom: 6px;
+    }
+
+    td {
+        @extend %BODY3;
+        padding: 4px 5px;
+
+        max-width: 250px;
+        overflow: hidden;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    td[colspan] {
+        overflow: visible;
+    }
+
+    &__btn-del,
+    &__btn-add {
+        @extend %BODY3;
+        width: 1.3em;
+        height: 1.3em;
+        background-size: contain;
+
+        transition: all 0.3s;
+    }
+
+    &__btn-add {
+        width: 100%;
+        display: block;
+        background-image: url("/circle-plus.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+
+        &:hover,
+        &:focus {
+            background-image: url("/circle-plus_hover.svg");
+        }
+    }
+
+    &__btn-del {
+        background-image: url("/circle-minus.svg");
+
+        &:hover,
+        &:focus {
+            background-image: url("/circle-minus_hover.svg");
+        }
+    }
+}

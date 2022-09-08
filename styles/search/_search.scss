@@ -1,0 +1,39 @@
+.search-curr {
+    position: relative;
+
+    > input,
+    &__btn {
+        @extend %BODY3;
+        max-width: 100%;
+        border-bottom: 2px solid transparent;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    &__btn {
+        &:focus,
+        &:hover {
+            border-bottom: 2px solid $main-color;
+        }
+    }
+
+    &__list {
+        display: none;
+        flex-direction: column;
+        gap: 3px;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        width: 100%;
+        padding: 0.5em 0.5em;
+        border-radius: 10px;
+        background: $back-color;
+        box-shadow: 0 0 10px #26262670;
+    }
+
+    &:focus-within > &__list {
+        display: flex;
+    }
+}
