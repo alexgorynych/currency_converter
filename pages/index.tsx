@@ -9,11 +9,11 @@ import { setCurrencies } from "../store/actions";
 import { useAppSelector } from "../hooks/store";
 import selector from "../store/selectors";
 import { cookieKeys, setCookie } from "../cookies";
-import { setCurrencyCodes } from "../store/actions/favourites";
+import { setCurrencyCodes, setRealLocation } from "../store/actions/favourites";
 
-export default function Home({ test }) {
+export default function Home() {
     const currencyCodes = useAppSelector(selector.favourites.currencyCodes);
-    console.log(test);
+
     useEffect(() => {
         setCookie(cookieKeys.CURRENCY_CODES, JSON.stringify(currencyCodes));
     }, [currencyCodes]);
@@ -22,7 +22,6 @@ export default function Home({ test }) {
         <>
             <Converter />
             <ExchangeRates />
-            <code>{JSON.stringify(test)}</code>
         </>
     );
 }
@@ -32,7 +31,7 @@ export const getServerSideProps: GetServerSideProps =
         const dispatch = store.dispatch as AppThunkDispatch;
         await dispatch(setCurrencies());
         dispatch(setCompanies());
-        console.log(req);
+
         const cookies: Object = req.cookies;
         if (cookies.hasOwnProperty(cookieKeys.CURRENCY_CODES)) {
             const currencyCodes: string[] = JSON.parse(
@@ -41,14 +40,11 @@ export const getServerSideProps: GetServerSideProps =
             dispatch(setCurrencyCodes(currencyCodes));
         }
 
+        const indexIp =
+            req.rawHeaders.findIndex((el) => el === "x-real-ip") + 1;
+        if (indexIp) await dispatch(setRealLocation(req.rawHeaders[indexIp]));
+
         return {
-            props: {
-                test: {
-                    t: req.url,
-                    t1: req.rawHeaders,
-                    t2: req.headers.location ? req.headers.location : "",
-                    t3: req.headers.host,
-                },
-            },
+            props: {},
         };
     });

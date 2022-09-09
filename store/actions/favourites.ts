@@ -1,3 +1,5 @@
+import { AppDispatch, AppThunk } from "..";
+import { ipwhois } from "../../api/ipwhois.io";
 import { ICountry, ICurrency } from "../../models";
 import { favouritesActions } from "../slices/favourites";
 
@@ -12,3 +14,10 @@ export const addCurrency = (currency: ICurrency) =>
 
 export const deleteCurrency = (index: number) =>
     favouritesActions.deleteCurrency(index);
+
+export const setRealLocation =
+    (ip: string): AppThunk =>
+    async (dispatch: AppDispatch): Promise<void> => {
+        const location = await ipwhois.getLocation(ip);
+        if (location) dispatch(favouritesActions.setLocation(location));
+    };
