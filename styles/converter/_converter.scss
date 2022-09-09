@@ -27,12 +27,18 @@
         }
     }
 
+    li:first-child > &__btn {
+        border-top-left-radius: 7px;
+    }
+
     &__btn {
         @extend %BODY1;
         padding: 0.5em 0.4em;
         border: 2px solid transparent;
 
         color: $font-color;
+
+        transition: all 0.2s;
 
         &:hover,
         &:focus {
